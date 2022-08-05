@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include "Simulator.h"
 
 int main()
 {
@@ -10,35 +11,7 @@ int main()
 
     window.setVerticalSyncEnabled(true);
 
-    sf::RenderTexture renderTexture;
-
-    renderTexture.create(window.getSize().x, window.getSize().y);
-
-    sf::Sprite renderSprite;
-
-    renderSprite.setTexture(renderTexture.getTexture());
-    
-    sf::RectangleShape screen(sf::Vector2f(window.getSize().x, window.getSize().y));
-    sf::RectangleShape initialPixel(sf::Vector2f(64.0f, 64.0f));
-
-    initialPixel.setFillColor(sf::Color::White);
-
-    sf::Shader shader;
-
-    shader.loadFromFile("shaders/fragmentShader.glsl", sf::Shader::Type::Fragment);
-
-    screen.setFillColor(sf::Color::Black);
-
-    renderTexture.draw(screen);
-    renderTexture.draw(initialPixel);
-
-    renderTexture.display();
-    
-    screen.setTexture(&renderTexture.getTexture());
-    
-    screen.setFillColor(sf::Color::White);
-
-    window.clear();
+    Simulator simulator(800, 600);
 
     while (window.isOpen())
     {
@@ -56,16 +29,11 @@ int main()
         {
             window.clear();
 
-            renderTexture.draw(screen, &shader);
-
-            renderTexture.display();
-
-            window.draw(screen);
+            simulator.DrawNextFrame(window);
 
             window.display();
 
             clock.restart();
         }
-
     }
 }
