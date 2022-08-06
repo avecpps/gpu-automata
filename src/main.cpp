@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/System/Sleep.hpp>
 #include "Simulator.h"
 
 int main(int argc, char** argv)
@@ -39,6 +40,11 @@ int main(int argc, char** argv)
             window.display();
 
             clock.restart();
+        }
+
+        else
+        {
+            sf::sleep(sf::seconds(1.0f / 20.0f - clock.getElapsedTime().asSeconds()));
         }
     }
 }
