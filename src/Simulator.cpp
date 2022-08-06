@@ -21,6 +21,9 @@ Simulator::Simulator(int width, int height)
     screen.setTexture(&renderTexture.getTexture());
 
     shader.loadFromFile("shaders/fragmentShader.glsl", sf::Shader::Type::Fragment);
+
+    shader.setUniform("width", width);
+    shader.setUniform("height", height);
 }
 
 void Simulator::DrawNextFrame(sf::RenderWindow &window)
