@@ -25,7 +25,7 @@ int main()
             }
         }
 
-        if (clock.getElapsedTime().asSeconds() >= 1.0f)
+        if (clock.getElapsedTime().asSeconds() >= 1.0f / 20.0f)
         {
             window.clear();
 
