@@ -1,6 +1,6 @@
 #include "Simulator.h"
 
-Simulator::Simulator(int width, int height)
+Simulator::Simulator(int width, int height, const std::string& shaderPath)
 {
     renderTexture.create(width, height);
 
@@ -20,7 +20,7 @@ Simulator::Simulator(int width, int height)
     screen.setFillColor(sf::Color::White);
     screen.setTexture(&renderTexture.getTexture());
 
-    shader.loadFromFile("shaders/fragmentShader.glsl", sf::Shader::Type::Fragment);
+    shader.loadFromFile(shaderPath, sf::Shader::Type::Fragment);
 
     shader.setUniform("width", width);
     shader.setUniform("height", height);

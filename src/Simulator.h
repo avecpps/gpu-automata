@@ -3,7 +3,7 @@
 class Simulator
 {
 public:
-    Simulator(int width, int height);
+    Simulator(int width, int height, const std::string& shaderPath);
 
     void DrawNextFrame(sf::RenderWindow& window);
 

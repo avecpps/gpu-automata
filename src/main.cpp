@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Simulator.h"
 
-int main()
+int main(int argc, char** argv)
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window", sf::Style::None);
 
@@ -11,7 +11,14 @@ int main()
 
     window.setVerticalSyncEnabled(true);
 
-    Simulator simulator(800, 600);
+    std::string shaderPath = "shaders/fragmentShader.glsl";
+
+    if (argc > 1)
+    {
+        shaderPath = std::string(argv[1]);
+    }
+
+    Simulator simulator(800, 600, shaderPath);
 
     while (window.isOpen())
     {
