@@ -7,7 +7,7 @@ Simulator::Simulator(int width, int height, const std::string& shaderPath)
     screen.setSize(sf::Vector2f(width, height));
     screen.setFillColor(sf::Color::Black);
 
-    initialPixel.setSize(sf::Vector2f(64.0f, 64.0f));
+    initialPixel.setSize(sf::Vector2f(1.0f, 500.0f));
     initialPixel.setFillColor(sf::Color::White);
 
     renderTexture.clear(sf::Color::Black);

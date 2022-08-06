@@ -7,8 +7,6 @@ int main(int argc, char** argv)
 
     sf::Clock clock;
 
-    float deltaTime = 0.0f;
-
     window.setVerticalSyncEnabled(true);
 
     std::string shaderPath = "shaders/fragmentShader.glsl";
