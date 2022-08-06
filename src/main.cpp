@@ -4,7 +4,9 @@
 
 int main(int argc, char** argv)
 {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window", sf::Style::None);
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML window", sf::Style::None);
+
+    float scale = 8.0f;
 
     sf::Clock clock;
 
@@ -17,7 +19,7 @@ int main(int argc, char** argv)
         shaderPath = std::string(argv[1]);
     }
 
-    Simulator simulator(800, 600, shaderPath);
+    Simulator simulator(window.getSize().x, window.getSize().y, shaderPath, scale);
 
     while (window.isOpen())
     {
@@ -31,7 +33,7 @@ int main(int argc, char** argv)
             }
         }
 
-        if (clock.getElapsedTime().asSeconds() >= 1.0f / 20.0f)
+        if (clock.getElapsedTime().asSeconds() >= 1.0f / 10.0f)
         {
             window.clear();
 
@@ -44,7 +46,7 @@ int main(int argc, char** argv)
 
         else
         {
-            sf::sleep(sf::seconds(1.0f / 20.0f - clock.getElapsedTime().asSeconds()));
+            sf::sleep(sf::seconds(1.0f / 10.0f - clock.getElapsedTime().asSeconds()));
         }
     }
 }

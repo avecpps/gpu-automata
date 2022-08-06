@@ -3,7 +3,7 @@
 class Simulator
 {
 public:
-    Simulator(int width, int height, const std::string& shaderPath);
+    Simulator(int width, int height, const std::string& shaderPath, float scale);
 
     void DrawNextFrame(sf::RenderWindow& window);
 
@@ -14,4 +14,6 @@ private:
 
     sf::RectangleShape screen;
     sf::RectangleShape initialPixel;
+
+    sf::RectangleShape scaledScreen;
 };

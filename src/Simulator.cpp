@@ -1,13 +1,17 @@
 #include "Simulator.h"
 
-Simulator::Simulator(int width, int height, const std::string& shaderPath)
+Simulator::Simulator(int width, int height, const std::string& shaderPath, float scale)
 {
-    renderTexture.create(width, height);
+    renderTexture.create((float)width / scale, (float)height / scale);
 
-    screen.setSize(sf::Vector2f(width, height));
+    screen.setSize(sf::Vector2f((float)width / scale, (float)height / scale));
     screen.setFillColor(sf::Color::Black);
 
-    initialPixel.setSize(sf::Vector2f(1.0f, 500.0f));
+    scaledScreen.setSize(screen.getSize() * scale);
+    scaledScreen.setTexture(&renderTexture.getTexture());
+
+    initialPixel.setPosition(sf::Vector2f((float)width / (2.0f * scale), 0.0f));
+    initialPixel.setSize(sf::Vector2f(1.0f, 1080.0f / scale));
     initialPixel.setFillColor(sf::Color::White);
 
     renderTexture.clear(sf::Color::Black);
@@ -22,8 +26,8 @@ Simulator::Simulator(int width, int height, const std::string& shaderPath)
 
     shader.loadFromFile(shaderPath, sf::Shader::Type::Fragment);
 
-    shader.setUniform("width", width);
-    shader.setUniform("height", height);
+    shader.setUniform("width", (int)((float)width / scale));
+    shader.setUniform("height", (int)((float)height / scale));
 }
 
 void Simulator::DrawNextFrame(sf::RenderWindow &window)
@@ -32,5 +36,5 @@ void Simulator::DrawNextFrame(sf::RenderWindow &window)
 
     renderTexture.display();
 
-    window.draw(screen);
+    window.draw(scaledScreen);
 }
